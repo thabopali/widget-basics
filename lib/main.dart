@@ -17,7 +17,12 @@ class _MyAppState extends State<MyApp> {
       appBar: AppBar(
         title: Text('Widget Basics'),
       ),
-      body: Text('Hello I\'m testing widgets'),
+      body: Column(
+        children: <Widget>[
+          Text('Hello I\'m testing widgets'),
+          RaisedButton(child: Text('Change Text'), onPressed: null,)
+        ],
+      ),
     ));
   }
 }
