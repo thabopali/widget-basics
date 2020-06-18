@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import './textControl.dart';
+import './text.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,11 +20,9 @@ class _MyAppState extends State<MyApp> {
     'This is the last message to be added here',
   ];
 
-  void _changeMessages(){
+  void _changeMessages() {
     setState(() {
       _messageIndex += 1;
-      print('Index is increment: ');
-      print( _messageIndex);
     });
   }
 
@@ -33,15 +33,22 @@ class _MyAppState extends State<MyApp> {
       appBar: AppBar(
         title: Text('Widget Basics'),
       ),
-      body: _messageIndex < _messages.length ? Column(
-        children: <Widget>[
-          Text(_messages[_messageIndex]),
-          RaisedButton(
-            child: Text('Change Text'),
-            onPressed: _changeMessages,
-          )
-        ],
-      ): Text('Stop clicking the button now!'),
+      body: _messageIndex < _messages.length
+          ? Column(
+              children: <Widget>[
+                Texts(_messages, _messageIndex),
+                TextControl(_changeMessages)
+              ],
+            )
+          : Container(
+            width: double.infinity,
+            margin: EdgeInsets.all(10),
+            child: Text(
+                'Stop clicking the button now!',
+                style: TextStyle(fontSize: 22),
+                textAlign: TextAlign.center,
+              ),
+          ),
     ));
   }
 }
